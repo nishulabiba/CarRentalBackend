@@ -8,8 +8,8 @@ const notFound = (req: Request, res: Response, next: NextFunction)=>{
 
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
-    message: "API not found!!!!!!!",
-    error: "",
+    statusCode: httpStatus.NOT_FOUND,
+    message: "Not Found"
   });
 }
 

@@ -10,5 +10,6 @@ export default {
   default_password: process.env.defaultPassword,
   bcrypt_salt_rounds: process.env.bcrypt_salt_roundsNo,
   jwt_secret_expires: process.env.JWT_ACCESS_ExpiresIn,
-  jwt_secret: process.env.JWT_ACCESS_SECRET
+  jwt_secret: process.env.JWT_ACCESS_SECRET,
+  NODE_ENV: process.env.NODE_ENV
 };
