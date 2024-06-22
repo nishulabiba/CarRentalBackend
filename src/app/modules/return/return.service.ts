@@ -4,7 +4,6 @@ import httpStatus from 'http-status';
 import AppError from '../../errors/AppError';
 import { Booking } from '../booking/booking.model';
 import Car from '../car/car.model';
-import { TCar } from '../car/car.interface';
 
 const returnCarIntoDB = async (bookingId: string, endTime: string) => {
   const booking = await Booking.findById(bookingId).populate('user car');
@@ -16,7 +15,7 @@ const returnCarIntoDB = async (bookingId: string, endTime: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
   }
   
-  const c:TCar | null = await Car.findByIdAndUpdate(booking?.carId, { status: 'available' });
+  const c =await Car.findByIdAndUpdate(booking?.carId, { status: 'available' });
 
   const { startTime } = booking;
   const pricePerHour = c?.pricePerHour;

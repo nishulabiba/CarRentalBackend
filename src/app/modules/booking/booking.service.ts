@@ -46,7 +46,9 @@ const getAllBookingsFromDB = async (carId: string, date: string) => {
     const parsedDate = new Date(date as string);
     filter.date = parsedDate;
   }
-  const bookings = await Booking.find(filter, { _id: true });
+  const bookings = await Booking.find(filter)
+    .populate('user car')
+    .select('-carFId');
 
   if (!bookings) {
     throw new AppError(httpStatus.NOT_FOUND, 'not found');
