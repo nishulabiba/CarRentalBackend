@@ -40,4 +40,4 @@ UserSchema.statics.isPasswordMatched = async function (
 ) {
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };
-export const User = model<TUser, UserModel>('CarSystemUser', UserSchema);
+export const User = model<TUser, UserModel>('User', UserSchema);

@@ -21,7 +21,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
       config.jwt_secret as string,
     ) as JwtPayload;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-    const { role, userEmail, iat } = decoded;
+    const { role, userEmail, iat, userId } = decoded;
     // checking if the user is exist
     const user = await User.isUserExistsByEmail(userEmail);
 

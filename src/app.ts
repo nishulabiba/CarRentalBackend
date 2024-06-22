@@ -13,10 +13,9 @@ app.use(cors());
 
 app.use('/api', router);
 
-app.use(notFound);
-
 app.get('/', (req: Request, res: Response) => {
   res.send('This server is working fine!!!!!!!!!');
 });
+app.use(notFound);
 app.use(globalErrorHandlers);
 export default app;
