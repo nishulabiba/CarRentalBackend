@@ -4,6 +4,7 @@ import httpStatus from 'http-status';
 import AppError from '../../errors/AppError';
 import { Booking } from '../booking/booking.model';
 import Car from '../car/car.model';
+import { TCar } from '../car/car.interface';
 
 const returnCarIntoDB = async (bookingId: string, endTime: string) => {
   const booking = await Booking.findById(bookingId).populate('user car');
@@ -11,13 +12,14 @@ const returnCarIntoDB = async (bookingId: string, endTime: string) => {
   //   throw new AppError(httpStatus.NOT_FOUND, "This booking is already closed!");
 
   // }
-  const car = booking?.car;
   if (!booking) {
     throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
   }
+  
+  const c:TCar | null = await Car.findByIdAndUpdate(booking?.carId, { status: 'available' });
 
   const { startTime } = booking;
-  const { pricePerHour } = car;
+  const pricePerHour = c?.pricePerHour;
 
   if (!startTime || !endTime) {
     throw new AppError(httpStatus.BAD_REQUEST, 'Invalid Time input!');
@@ -31,11 +33,13 @@ const returnCarIntoDB = async (bookingId: string, endTime: string) => {
   if (durationInHours < 0) {
     durationInHours += 24; // Assuming a full day transition if endTime < startTime
   }
+  if(!pricePerHour){
+    throw new AppError(httpStatus.NOT_FOUND, 'car is invalid')
+  }
   const totalCost = durationInHours * pricePerHour;
   booking.totalCost = totalCost;
   booking.endTime = endTime;
   const updatebooking = await booking.save();
-  await Car.findByIdAndUpdate(booking?.carId, { status: 'available' });
 
   return updatebooking;
 };

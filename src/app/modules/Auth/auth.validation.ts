@@ -7,6 +7,6 @@ const loginValidationSchema = z.object({
   }),
 });
 
-export const AuthValidations= {
-  loginValidationSchema
-}
+export const AuthValidations = {
+  loginValidationSchema,
+};

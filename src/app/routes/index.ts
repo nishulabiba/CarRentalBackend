@@ -24,7 +24,6 @@ const modulesRoute = [
     path: '/bookings',
     route: BookingRoute,
   },
-
 ];
 
 modulesRoute.forEach((route) => router.use(route.path, route.route));

@@ -7,8 +7,8 @@ import { User } from '../user/user.model';
 const createBooking = catchAsync(async (req, res) => {
   const payload = req.body;
   const userEmail = req.user?.userEmail;
-  const user = await User.isUserExistsByEmail(userEmail)
-  payload.user = user._id
+  const user = await User.isUserExistsByEmail(userEmail);
+  payload.user = user._id;
   const result = await BookingServices.createAbookingIntoDB(payload);
 
   sendResponse(res, {
@@ -35,11 +35,9 @@ const getAllBookings = catchAsync(async (req, res) => {
 });
 
 const getMyBookings = catchAsync(async (req, res) => {
-  const {userId} = req.user;
+  const { userId } = req.user;
 
-  const result = await BookingServices.getMyBookingsFromDB(
-    userId as string
-  );
+  const result = await BookingServices.getMyBookingsFromDB(userId as string);
 
   sendResponse(res, {
     success: true,
@@ -52,5 +50,5 @@ const getMyBookings = catchAsync(async (req, res) => {
 export const BookingControllers = {
   createBooking,
   getAllBookings,
-  getMyBookings
+  getMyBookings,
 };

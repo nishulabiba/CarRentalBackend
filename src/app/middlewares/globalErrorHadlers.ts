@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ErrorRequestHandler } from "express";
-import { TErrorSources } from "../interface/errors";
-import { ZodError } from "zod";
-import config from "../config";
-import AppError from "../errors/AppError";
-import handleCastError from "../errors/handleCastError";
-import handleValidationError from "../errors/handleValidationError";
-import handleZodError from "../errors/handleZodError";
-import handleDuplicateError from "../errors/handleDuplicateError";
+import { ErrorRequestHandler } from 'express';
+import { TErrorSources } from '../interface/errors';
+import { ZodError } from 'zod';
+import config from '../config';
+import AppError from '../errors/AppError';
+import handleCastError from '../errors/handleCastError';
+import handleValidationError from '../errors/handleValidationError';
+import handleZodError from '../errors/handleZodError';
+import handleDuplicateError from '../errors/handleDuplicateError';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-
   let statusCode = 500;
   let message = 'Something went wrong!';
   let errorSources: TErrorSources = [
@@ -64,7 +63,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   return res.status(statusCode).json({
     success: false,
     message,
-    errorMessages:errorSources,
+    errorMessages: errorSources,
     stack: config.NODE_ENV === 'development' ? err?.stack : null,
   });
 };

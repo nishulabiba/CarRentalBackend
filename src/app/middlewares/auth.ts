@@ -29,13 +29,13 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
     }
     if (requiredRoles && !requiredRoles.includes(role)) {
-        throw new AppError(
-          httpStatus.UNAUTHORIZED,
-          'You have no access to this route',
-        );
-      }
-  
-      req.user = decoded as JwtPayload & { role: string };
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
+    }
+
+    req.user = decoded as JwtPayload & { role: string };
     next();
   });
 };

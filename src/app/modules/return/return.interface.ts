@@ -1,8 +1,4 @@
-
-
-
 export type Treturn = {
-    bookingId: string;
-    endTime: string
-
-}
+  bookingId: string;
+  endTime: string;
+};
