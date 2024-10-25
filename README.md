@@ -3,7 +3,7 @@ Project Overview
 The Car Rental System is a comprehensive application that allows users to book and return cars. This system is designed to manage car bookings efficiently, ensuring that users have a seamless experience while renting vehicles. The application also provides administrative functionalities for managing cars and bookings.
 
  # Live URL
-Car Rental System Live: https://a-one-psi.vercel.app/
+Car Rental System Live: https://cars-five-sigma.vercel.app/
 
 # Features
 User Authentication: Secure user registration and login.
