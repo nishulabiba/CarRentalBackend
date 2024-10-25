@@ -4,6 +4,7 @@ import path from 'path';
 
 dotenv.config({ path: path.join((process.cwd(), '.env')) });
 
+
 export default {
   port: process.env.PORT,
   database_url: process.env.URL,
@@ -12,4 +13,5 @@ export default {
   jwt_secret_expires: process.env.JWT_ACCESS_ExpiresIn,
   jwt_secret: process.env.JWT_ACCESS_SECRET,
   NODE_ENV: process.env.NODE_ENV,
+  database_name: process.env.DATABASE_Name
 };
